@@ -4,5 +4,9 @@ import java.net.Socket;
 
 public class ServerConnection {
     //singleton pattern
+    private volatile Socket socket;
+
+
+
 
 }
