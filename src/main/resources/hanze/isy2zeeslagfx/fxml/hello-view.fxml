@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -10,17 +12,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="G" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-         <children>
-            <TextField layoutX="225.0" layoutY="187.0" />
-            <Text layoutX="161.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :">
-               <font>
-                  <Font name="Dungeon" size="16.0" />
-               </font>
-            </Text>
-            <Text layoutX="266.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to " />
-         </children></AnchorPane>
-  </content>
-</TitledPane>
+<AnchorPane fx:id="helloViewAnchorPane" minHeight="540.0" minWidth="960.0" prefHeight="640.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hanze.isy2zeeslagfx.controller.HelloController">
+   <children>
+      <TextField fx:id="helloViewNameBox" layoutX="438.0" layoutY="327.0" />
+      <Text layoutX="374.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :">
+         <font>
+            <Font name="Dungeon" size="16.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="191.0" fitWidth="402.0" layoutX="308.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/JTT%20Games%20logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="helloViewStartButton" layoutX="461.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="35.0" prefWidth="77.0" style="-fx-background-color: FF6B33;" text="Start" />
+      <Label fx:id="label" contentDisplay="CENTER" layoutX="437.0" layoutY="303.0" prefHeight="17.0" prefWidth="149.0" text="halt" textAlignment="CENTER" textFill="RED" />
+      <CheckBox fx:id="rememberMeCheckBox" layoutX="609.0" layoutY="331.0" mnemonicParsing="false" text="Remember me" />
+   </children>
+</AnchorPane>
