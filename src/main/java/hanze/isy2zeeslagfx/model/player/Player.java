@@ -1,10 +1,13 @@
 package hanze.isy2zeeslagfx.model.player;
 
+import hanze.isy2zeeslagfx.config.Config;
+import hanze.isy2zeeslagfx.config.Setting;
+
 public class Player {
     String userName;
 
-    Player(String userName) {
-        this.userName = userName;
+    Player() {
+        this.userName = Config.getInstance().getSetting(Setting.NAME);
     }
 
     public String getUserName() {

@@ -22,15 +22,13 @@ public class MainMenuController {
     {
         Playboard playboard = new Playboard();
         playboard.fillBoard(playboard);
-        Inputboard inputboard = new Inputboard();
-        inputboard.fillBoard(inputboard, new Ship(2,3));
-        inputboard.printBoard();
-        Ship boot1 = new Ship(1,2);
-        Ship boot2 = new Ship(2,3);
-        Ship boot3 = new Ship(3,4);
-        Ship boot4 = new Ship(4,5);
-        System.out.println();
         playboard.printBoard();
         System.out.println();
+        System.out.println();
+        Inputboard inputboard = new Inputboard();
+        inputboard.fillBoard(inputboard);
+        inputboard.printBoard();
+        Ship boot1 = new Ship(1,2);
+        System.out.print("Number of Ships created are: " + Ship.getShipsCounter());
     }
 }

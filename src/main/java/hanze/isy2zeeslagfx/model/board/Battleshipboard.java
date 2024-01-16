@@ -6,7 +6,7 @@ public abstract class Battleshipboard extends Board {
     }
 
     @Override
-    protected char[][] fillBoard(Board board) {
+    public char[][] fillBoard(Board board) {
         return super.fillBoard(board);
     }
 

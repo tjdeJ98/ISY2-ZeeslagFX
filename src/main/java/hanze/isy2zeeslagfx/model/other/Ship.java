@@ -1,22 +1,22 @@
 package hanze.isy2zeeslagfx.model.other;
 
 public class Ship {
-    private int shipCount;
+    private static int shipCounter;
     int startCoordinate;
     int endCoordinate;
 
     public Ship(int startCoordinate, int endCoordinate) {
         this.startCoordinate = startCoordinate;
         this.endCoordinate = endCoordinate;
-        ++this.shipCount;
+        shipCounter++;
     }
 
-    public int getShipCount() {
-        return this.shipCount;
+    public static int getShipsCounter() {
+        return shipCounter;
     }
 
-    public void setShipCount(int shipCount) {
-        this.shipCount = shipCount;
+    public static void setShipsCounter(int shipCount) {
+        Ship.shipCounter = shipCount;
     }
 
     public int getStartCoordinate() {
