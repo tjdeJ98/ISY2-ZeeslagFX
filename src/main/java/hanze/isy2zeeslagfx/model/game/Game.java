@@ -2,18 +2,34 @@ package hanze.isy2zeeslagfx.model.game;
 
 import hanze.isy2zeeslagfx.model.board.Board;
 import hanze.isy2zeeslagfx.model.board.BoardFactory;
+import hanze.isy2zeeslagfx.model.player.Player;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
-    private Board gameBoard;
+    private final Board gameBoard;
+    private Map<String, Player> players;
 
-    public Game(String gameType)
-    {
+    /*
+     * Have to take out
+     */
+    public Game(String gameType) {
+        this.players = new HashMap<>();
         this.gameBoard = createBoardForGame(gameType);
     }
 
-    public void setupGame(String gameType)
+    private void addPlayer(String playerId, Player player) {
+        players.put(playerId, player);
+    }
+
+    private void removePlayer(String playerId) {
+        players.remove(playerId);
+    }
+
+    public Player getPlayer(String playerId)
     {
-        createBoardForGame(gameType);
+        return players.get(playerId);
     }
 
     private Board createBoardForGame(String gameType)

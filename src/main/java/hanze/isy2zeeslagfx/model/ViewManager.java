@@ -1,6 +1,5 @@
-package hanze.isy2zeeslagfx.model.view;
+package hanze.isy2zeeslagfx.model;
 
-import hanze.isy2zeeslagfx.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +15,7 @@ public class ViewManager {
 
     public static void initialScene(Stage stageStart) throws IOException {
         stage = stageStart;
-        URL fxmlLocation = ViewManager.class.getResource(path + "hello-view.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-        scene = new Scene(fxmlLoader.load());
+        scene = new Scene(loadSceneFile("hello-view"));
         stage.setTitle("Test");
         stage.setScene(scene);
         stage.show();
@@ -35,7 +32,7 @@ public class ViewManager {
 
     private static Parent loadSceneFile(String fxmlName) throws IOException
     {
-        URL fxmlLocation = Main.class.getResource(path + fxmlName + ".fxml");
+        URL fxmlLocation = ViewManager.class.getResource(path + fxmlName + ".fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
         return fxmlLoader.load();
     }
