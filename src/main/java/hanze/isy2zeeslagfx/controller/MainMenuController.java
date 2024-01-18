@@ -2,9 +2,7 @@ package hanze.isy2zeeslagfx.controller;
 
 import hanze.isy2zeeslagfx.config.Config;
 import hanze.isy2zeeslagfx.config.Setting;
-import hanze.isy2zeeslagfx.model.board.Inputboard;
-import hanze.isy2zeeslagfx.model.board.Playboard;
-import hanze.isy2zeeslagfx.model.other.Ship;
+import hanze.isy2zeeslagfx.model.game.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -20,15 +18,8 @@ public class MainMenuController {
     @FXML
     public void playBattleShipsLokaal()
     {
-        Playboard playboard = new Playboard();
-        playboard.fillBoard(playboard);
-        playboard.printBoard();
-        System.out.println();
-        System.out.println();
-        Inputboard inputboard = new Inputboard();
-        inputboard.fillBoard(inputboard);
-        inputboard.printBoard();
-        Ship boot1 = new Ship(1,2);
-        System.out.print("Number of Ships created are: " + Ship.getShipsCounter());
+        Game game = new Game();
+        game.setGameBoard(game.createGame("Battleships"));
+        System.out.println(game.getGameBoard().getWidth());
     }
 }

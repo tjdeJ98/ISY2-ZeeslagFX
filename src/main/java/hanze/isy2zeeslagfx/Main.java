@@ -44,10 +44,4 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
         return fxmlLoader.load();
     }
-
-    public static void changeScene(String fxmlName) throws IOException
-    {
-        Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("fxml/" + fxmlName + ".fxml")));
-        stage.getScene().setRoot(pane);
-    }
 }
