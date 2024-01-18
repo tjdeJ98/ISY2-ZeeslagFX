@@ -18,8 +18,7 @@ public class MainMenuController {
     @FXML
     public void playBattleShipsLokaal()
     {
-        Game game = new Game();
-        game.setGameBoard(game.createGame("Battleships"));
+        Game game = new Game("Battleships");
         System.out.println(game.getGameBoard().getWidth());
     }
 }
