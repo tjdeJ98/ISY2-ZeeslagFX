@@ -15,7 +15,8 @@ public class Main extends Application {
     public static Stage stage;
 
     @Override
-    public void start(Stage stageStart) throws IOException {
+    public void start(Stage stageStart) throws IOException
+    {
         stage = stageStart;
         URL fxmlLocation = getClass().getResource("fxml/hello-view.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
@@ -45,9 +46,4 @@ public class Main extends Application {
         return fxmlLoader.load();
     }
 
-    public static void changeScene(String fxmlName) throws IOException
-    {
-        Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("fxml/" + fxmlName + ".fxml")));
-        stage.getScene().setRoot(pane);
-    }
 }
