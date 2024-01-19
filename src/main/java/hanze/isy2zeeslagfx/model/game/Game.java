@@ -2,6 +2,7 @@ package hanze.isy2zeeslagfx.model.game;
 
 import hanze.isy2zeeslagfx.config.Config;
 import hanze.isy2zeeslagfx.config.Setting;
+import hanze.isy2zeeslagfx.model.game.pieces.Ship;
 import hanze.isy2zeeslagfx.model.player.Player;
 import hanze.isy2zeeslagfx.model.player.PlayerFactory;
 
@@ -11,6 +12,8 @@ import java.util.Map;
 public class Game {
     private Map<Integer, Player> players;
     private final String gameType;
+
+    private final int[] startShipsLengths = {2, 4, 5, 6};
 
     public enum PlayersSetupType {
         PLAYER_VS_PLAYER,
@@ -25,6 +28,36 @@ public class Game {
         this.gameType = gameType;
         this.playersType = playersType;
         initializePlayers();
+        givePlayersShips();
+        placeAShip("A2", "D2", 1, players.get(0));
+        printPlayerShips();
+        for (int i=0; i<3; i++) {
+            System.out.println("breaker: " + i);
+        }
+    }
+
+    private void placeAShip(String start, String end, int id, Player player)
+    {
+        player.placeShip(start, end, id);
+    }
+
+    private void printPlayerShips()
+    {
+        System.out.println();
+
+        for (Map.Entry<Integer, Player> player : players.entrySet()) {
+            for (Ship ship : player.getValue().getFleetManager().getFleet()) {
+                System.out.println(ship.getShipId() + " - " + ship.getLength());
+            }
+            player.getValue().getBoard().printBoard();
+        }
+    }
+
+    private void givePlayersShips()
+    {
+        for (Map.Entry<Integer, Player> player : players.entrySet()) {
+            player.getValue().createShipsForPlayer(startShipsLengths);
+        }
     }
 
     private void initializePlayers()
@@ -57,7 +90,7 @@ public class Game {
         players.put(playerId, player);
     }
 
-    public Player getPlayer(String playerId)
+    public Player getPlayer(int playerId)
     {
         return players.get(playerId);
     }

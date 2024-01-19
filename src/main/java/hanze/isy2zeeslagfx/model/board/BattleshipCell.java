@@ -1,23 +1,36 @@
 package hanze.isy2zeeslagfx.model.board;
 
+import hanze.isy2zeeslagfx.model.game.pieces.Ship;
+
 public class BattleshipCell {
-    private CellStatus status;
-    private enum CellStatus {
-        EMPTY("EM"),
-        SHIP("SH"),
-        HIT("HI"),
-        MISS("MI"),
-        SUNK("SU");
+    private int shipId;
+    private final String coordinate;
 
-        String cellCharacter;
+    private boolean hit;
 
-        CellStatus(String cellCharacter) {
-            this.cellCharacter = cellCharacter;
-        }
+    public BattleshipCell(String coordinate)
+    {
+        this.coordinate = coordinate;
+        this.shipId = -1;
+        this.hit = false;
     }
 
-    public BattleshipCell() {
-        this.status = CellStatus.EMPTY;
+    public int getShipId() {
+        return shipId;
     }
 
+    public void setShipId(int shipId)
+    {
+        this.shipId = shipId;
+    }
+
+    public String getCoordinate()
+    {
+        return this.coordinate;
+    }
+
+    public void setHit()
+    {
+        this.hit = true;
+    }
 }

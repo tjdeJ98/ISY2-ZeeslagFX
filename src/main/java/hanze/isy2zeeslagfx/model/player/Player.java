@@ -8,4 +8,5 @@ public interface Player {
     String getName();
     Board getBoard();
     FleetManager getFleetManager();
+    void placeShip(String startCoordinate, String endCoordinate, int shipId);
 }
