@@ -1,14 +1,16 @@
 package hanze.isy2zeeslagfx.model.game;
 
+import hanze.isy2zeeslagfx.config.Config;
+import hanze.isy2zeeslagfx.config.Setting;
 import hanze.isy2zeeslagfx.model.board.Board;
 import hanze.isy2zeeslagfx.model.board.BoardFactory;
 import hanze.isy2zeeslagfx.model.player.Player;
+import hanze.isy2zeeslagfx.model.player.PlayerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
-    private final Board gameBoard;
     private Map<String, Player> players;
 
     /*
@@ -16,7 +18,7 @@ public class Game {
      */
     public Game(String gameType) {
         this.players = new HashMap<>();
-        this.gameBoard = createBoardForGame(gameType);
+        addPlayer("1", PlayerFactory.createPlayer(Config.getInstance().getSetting(Setting.NAME), gameType));
     }
 
     private void addPlayer(String playerId, Player player) {
@@ -30,15 +32,5 @@ public class Game {
     public Player getPlayer(String playerId)
     {
         return players.get(playerId);
-    }
-
-    private Board createBoardForGame(String gameType)
-    {
-        return BoardFactory.createBoard(gameType);
-    }
-
-    public Board getGameBoard()
-    {
-        return gameBoard;
     }
 }
