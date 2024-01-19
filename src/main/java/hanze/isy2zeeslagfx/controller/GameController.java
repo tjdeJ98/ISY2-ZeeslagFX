@@ -1,6 +1,8 @@
 package hanze.isy2zeeslagfx.controller;
 
-import hanze.isy2zeeslagfx.model.game.GameModel;
+/*
+ * Mogelijke controller factory maken om voor elk spel een controller te genereren die de game beheerd.
+ */
 
 public class GameController {
     public GameController() {

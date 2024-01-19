@@ -88,7 +88,6 @@ public class Config {
     private void setSetting(Setting setting, String value, boolean save)
     {
         this.settings.put(setting, value);
-        System.out.println(settings);
         if (save) saveToConfigFile();
     }
 
