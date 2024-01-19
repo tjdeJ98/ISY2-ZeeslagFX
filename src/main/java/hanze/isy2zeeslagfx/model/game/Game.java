@@ -2,8 +2,6 @@ package hanze.isy2zeeslagfx.model.game;
 
 import hanze.isy2zeeslagfx.config.Config;
 import hanze.isy2zeeslagfx.config.Setting;
-import hanze.isy2zeeslagfx.model.board.Board;
-import hanze.isy2zeeslagfx.model.board.BoardFactory;
 import hanze.isy2zeeslagfx.model.player.Player;
 import hanze.isy2zeeslagfx.model.player.PlayerFactory;
 
@@ -11,22 +9,52 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
-    private Map<String, Player> players;
+    private Map<Integer, Player> players;
+    private final String gameType;
 
-    /*
-     * Have to take out the add player
-     */
-    public Game(String gameType) {
+    public enum PlayersSetupType {
+        PLAYER_VS_PLAYER,
+        PLAYER_VS_AI,
+        AI_VS_AI
+    }
+    private final PlayersSetupType playersType;
+
+    public Game(String gameType, PlayersSetupType playersType)
+    {
         this.players = new HashMap<>();
-        addPlayer("1", PlayerFactory.createPlayer(Config.getInstance().getSetting(Setting.NAME), gameType));
+        this.gameType = gameType;
+        this.playersType = playersType;
+        initializePlayers();
     }
 
-    private void addPlayer(String playerId, Player player) {
+    private void initializePlayers()
+    {
+        switch (this.playersType) {
+            case PLAYER_VS_PLAYER: // Player vs Player
+                addPlayer(0, createPlayer("HumanPlayer", Config.getInstance().getSetting(Setting.NAME)));
+                addPlayer(1, createPlayer("HumanPlayer", "Guest Player"));
+                break;
+            case PLAYER_VS_AI: // Player vs AI
+                addPlayer(0, createPlayer("HumanPlayer", Config.getInstance().getSetting(Setting.NAME)));
+                addPlayer(1, createPlayer("AIPlayer", "AIPlayer"));
+                break;
+            case AI_VS_AI: // AI vs AI
+                addPlayer(0, createPlayer("AIPlayer", "AI Player 1"));
+                addPlayer(1, createPlayer("AIPlayer", "AI Player 2"));
+                break;
+            default:
+                throw new IllegalArgumentException("This player setup is not available");
+        }
+    }
+
+    private Player createPlayer(String playerType, String playerName)
+    {
+        return PlayerFactory.createPlayer(playerType, gameType, playerName);
+    }
+
+    private void addPlayer(Integer playerId, Player player)
+    {
         players.put(playerId, player);
-    }
-
-    private void removePlayer(String playerId) {
-        players.remove(playerId);
     }
 
     public Player getPlayer(String playerId)

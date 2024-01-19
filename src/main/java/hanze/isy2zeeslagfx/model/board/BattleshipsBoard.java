@@ -3,44 +3,33 @@ package hanze.isy2zeeslagfx.model.board;
 import java.util.Arrays;
 
 public class BattleshipsBoard implements Board {
-    private final int width = 8;
-    private final int height = 8;
-    protected char[][] board = new char[width][height];
+    private final int boardSize = 8;
+    private final BattleshipCell[][] board;
 
-
-    public BattleshipsBoard() {
-
+    public BattleshipsBoard()
+    {
+        this.board = new BattleshipCell[boardSize][boardSize];
+        this.initializeBoard();
+        this.printBoard();
     }
 
-    protected char[][] fillBoard(Board board) {
-        char[][] gameBoard = this.board;
-        int maxPosition = 8;
-
-        for(int i = 0; i < maxPosition; i++) {
-            char[] row = gameBoard[i];
-            Arrays.fill(row, '-');
-        }
-
-        return this.board;
-    }
-
-    protected void printBoard() {
-        for(int row = 0; row < width; ++row) {
-            for(int col = 0; col < height; ++col) {
-                System.out.print(this.board[row][col]);
-                System.out.print("  ");
-                if (col == 7) {
-                    System.out.println();
-                }
+    public void initializeBoard()
+    {
+        for (int row=0; row<boardSize; row++) {
+            for (int col=0; col<boardSize; col++) {
+                board[row][col] = new BattleshipCell();
             }
         }
     }
 
-    public int getWidth() {
-        return width;
+    private void printBoard()
+    {
+        for (int i=0; i<board.length; i++) {
+            System.out.printf(Arrays.toString(board[i]));
+        }
     }
 
-    public int getHeight() {
-        return height;
+    public BattleshipCell[][] getBoard() {
+        return this.board;
     }
 }
