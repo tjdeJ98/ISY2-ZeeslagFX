@@ -14,7 +14,7 @@ public class Game {
     private Map<String, Player> players;
 
     /*
-     * Have to take out
+     * Have to take out the add player
      */
     public Game(String gameType) {
         this.players = new HashMap<>();

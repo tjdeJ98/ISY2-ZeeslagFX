@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class BattleshipsBoard implements Board {
     private final int width = 8;
     private final int height = 8;
-
     protected char[][] board = new char[width][height];
+
 
     public BattleshipsBoard() {
 
