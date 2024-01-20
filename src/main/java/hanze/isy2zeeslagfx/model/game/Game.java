@@ -2,6 +2,7 @@ package hanze.isy2zeeslagfx.model.game;
 
 import hanze.isy2zeeslagfx.config.Config;
 import hanze.isy2zeeslagfx.config.Setting;
+import hanze.isy2zeeslagfx.model.game.loops.GameLoop;
 import hanze.isy2zeeslagfx.model.game.pieces.Ship;
 import hanze.isy2zeeslagfx.model.player.Player;
 import hanze.isy2zeeslagfx.model.player.PlayerFactory;
@@ -9,7 +10,8 @@ import hanze.isy2zeeslagfx.model.player.PlayerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Game {
+public abstract class Game {
+    protected GameLoop gameLoop;
     protected Map<Integer, Player> players;
     private final String gameType;
 
@@ -63,4 +65,13 @@ public class Game {
     {
         return players.get(playerId);
     }
+
+    public void setGameLoop(GameLoop gameLoop)
+    {
+        this.gameLoop = gameLoop;
+    }
+
+    public abstract void update();
+    public abstract void checkForEnd();
 }
+

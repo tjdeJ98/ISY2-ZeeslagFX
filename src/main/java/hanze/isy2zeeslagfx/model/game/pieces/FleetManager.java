@@ -47,6 +47,16 @@ public class FleetManager {
         }
         return null;
     }
+    public boolean haveAllPlayerShipsBeenPlaced()
+    {
+        for (Ship ship : fleet) {
+            if (!ship.getPlaced()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public List<Ship> getShipsByLength(int length)
     {

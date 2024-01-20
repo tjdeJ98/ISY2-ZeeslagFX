@@ -23,9 +23,12 @@ public class BattleshipStrategy implements PlayerStrategy {
     }
 
     public void placeShip(String startCoordinate, String endCoordinate, int shipId) {
-        ((BattleshipsBoard) this.board).shipPlacement(startCoordinate, endCoordinate, shipId);
-        this.fleetManager.getShipById(shipId).setPlaced();
-        this.fleetManager.getShipById(shipId).setState();
+        if (((BattleshipsBoard) this.board).shipPlacement(startCoordinate, endCoordinate, shipId)) {
+            this.fleetManager.getShipById(shipId).setPlaced();
+            this.fleetManager.getShipById(shipId).setState();
+        } else {
+            System.out.println("Invalid ship placement, try again");
+        }
     }
 
     public Board getTrackingBoard()
