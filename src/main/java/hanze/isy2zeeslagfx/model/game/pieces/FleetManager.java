@@ -1,5 +1,6 @@
 package hanze.isy2zeeslagfx.model.game.pieces;
 
+import hanze.isy2zeeslagfx.model.board.BattleshipsBoard;
 import hanze.isy2zeeslagfx.model.player.Player;
 
 import java.util.ArrayList;

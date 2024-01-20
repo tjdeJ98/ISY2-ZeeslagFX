@@ -124,6 +124,12 @@ public class BattleshipsBoard implements Board {
         }
     }
 
+    public boolean isValidShipPlacement(String start, String end, int shipLength) {
+        boolean foo = !isDuplicateStartAndEnd(start, end);
+        boolean bar = isValidShipPlacementLength(start, end, shipLength);
+        return foo && bar;
+    }
+
     private boolean checkIfCoordinateExists(String startCoordinate, String endCoordinate) {
         return listOfAllCoordinatesOnBoard.contains(startCoordinate) && listOfAllCoordinatesOnBoard.contains(endCoordinate);
     }
