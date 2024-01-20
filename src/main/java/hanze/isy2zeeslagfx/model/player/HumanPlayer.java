@@ -18,12 +18,6 @@ public class HumanPlayer implements Player {
         this.fleetManager = new FleetManager();
     }
 
-    public void createShipsForPlayer(int[] newShipsLengths)
-    {
-        for (int newShipLength : newShipsLengths)
-            fleetManager.createNewShip(newShipLength);
-    }
-
     public void placeShip(String startCoordinate, String endCoordinate, int shipId) {
         this.board.shipPlacement(startCoordinate, endCoordinate, shipId);
         this.fleetManager.getShipById(shipId).setPlaced();

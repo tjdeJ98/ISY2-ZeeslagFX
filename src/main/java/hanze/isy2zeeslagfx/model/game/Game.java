@@ -10,12 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
-    private Map<Integer, Player> players;
+    protected Map<Integer, Player> players;
     private final String gameType;
 
-    private final int[] startShipsLengths = {2, 4, 5, 6};
-
-    public enum PlayersSetupType {
+    public enum PlayersSetupType
+    {
         PLAYER_VS_PLAYER,
         PLAYER_VS_AI,
         AI_VS_AI
@@ -28,36 +27,6 @@ public class Game {
         this.gameType = gameType;
         this.playersType = playersType;
         initializePlayers();
-        givePlayersShips();
-        placeAShip("A2", "D2", 1, players.get(0));
-        printPlayerShips();
-        for (int i=0; i<3; i++) {
-            System.out.println("breaker: " + i);
-        }
-    }
-
-    private void placeAShip(String start, String end, int id, Player player)
-    {
-        player.placeShip(start, end, id);
-    }
-
-    private void printPlayerShips()
-    {
-        System.out.println();
-
-        for (Map.Entry<Integer, Player> player : players.entrySet()) {
-            for (Ship ship : player.getValue().getFleetManager().getFleet()) {
-                System.out.println(ship.getShipId() + " - " + ship.getLength());
-            }
-            player.getValue().getBoard().printBoard();
-        }
-    }
-
-    private void givePlayersShips()
-    {
-        for (Map.Entry<Integer, Player> player : players.entrySet()) {
-            player.getValue().createShipsForPlayer(startShipsLengths);
-        }
     }
 
     private void initializePlayers()

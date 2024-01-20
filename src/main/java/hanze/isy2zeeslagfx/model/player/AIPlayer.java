@@ -18,12 +18,6 @@ public class AIPlayer implements Player {
         this.fleetManager = new FleetManager();
     }
 
-    public void createShipsForPlayer(int[] newShipLengths)
-    {
-        for (int newShipLength : newShipLengths)
-            fleetManager.createNewShip(newShipLength);
-    }
-
     @Override
     public String getName()
     {
