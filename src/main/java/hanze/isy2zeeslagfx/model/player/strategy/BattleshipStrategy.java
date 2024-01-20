@@ -5,6 +5,8 @@ import hanze.isy2zeeslagfx.model.board.Board;
 import hanze.isy2zeeslagfx.model.board.BoardFactory;
 import hanze.isy2zeeslagfx.model.game.pieces.FleetManager;
 
+
+// TODO moet wss veel methodes uit BattleshipGame overnemen als player acties.
 public class BattleshipStrategy implements PlayerStrategy {
     private final Board board;
     private final Board trackingBoard;
