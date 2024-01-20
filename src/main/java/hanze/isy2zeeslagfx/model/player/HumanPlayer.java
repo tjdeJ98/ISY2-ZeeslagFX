@@ -3,31 +3,24 @@ package hanze.isy2zeeslagfx.model.player;
 import hanze.isy2zeeslagfx.model.board.Board;
 import hanze.isy2zeeslagfx.model.board.BoardFactory;
 import hanze.isy2zeeslagfx.model.game.pieces.FleetManager;
+import hanze.isy2zeeslagfx.model.player.strategy.BattleshipStrategy;
+import hanze.isy2zeeslagfx.model.player.strategy.PlayerStrategy;
 
 public class HumanPlayer implements Player {
     private final String name;
-    private final Board board;
-    private final Board trackingBoard;
-    private final FleetManager fleetManager;
+    private PlayerStrategy strategy;
 
     public HumanPlayer(String gameType, String playerName)
     {
         this.name = playerName;
-        this.board = BoardFactory.createBoard(gameType);
-        this.trackingBoard = BoardFactory.createBoard(gameType);
-        this.fleetManager = new FleetManager();
+        setStrategyType(gameType);
     }
 
-    public void createShipsForPlayer(int[] newShipsLengths)
+    public void setStrategyType(String gameType)
     {
-        for (int newShipLength : newShipsLengths)
-            fleetManager.createNewShip(newShipLength);
-    }
-
-    public void placeShip(String startCoordinate, String endCoordinate, int shipId) {
-        this.board.shipPlacement(startCoordinate, endCoordinate, shipId);
-        this.fleetManager.getShipById(shipId).setPlaced();
-        this.fleetManager.getShipById(shipId).setState();
+        if (gameType.equals("Battleships")) {
+            this.strategy = new BattleshipStrategy();
+        }
     }
 
     @Override
@@ -36,20 +29,8 @@ public class HumanPlayer implements Player {
         return name;
     }
 
-    @Override
-    public Board getBoard()
+    public PlayerStrategy getStrategy()
     {
-        return this.board;
-    }
-
-    public Board getTrackingBoard()
-    {
-        return trackingBoard;
-    }
-
-    @Override
-    public FleetManager getFleetManager()
-    {
-        return this.fleetManager;
+        return this.strategy;
     }
 }

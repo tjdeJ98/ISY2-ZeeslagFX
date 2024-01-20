@@ -1,7 +1,10 @@
 package hanze.isy2zeeslagfx.model.game.pieces;
 
+import hanze.isy2zeeslagfx.model.player.Player;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class FleetManager {
     private final List<Ship> fleet;
@@ -18,7 +21,13 @@ public class FleetManager {
         return nextShipId++;
     }
 
-    public void createNewShip(int length)
+    public void createShipsForPlayer(int[] newShipsLengths)
+    {
+        for (int newShipLength : newShipsLengths)
+            createNewShip(newShipLength);
+    }
+
+    private void createNewShip(int length)
     {
         int shipId = generateNewShipId();
         Ship newShip = new Ship(shipId, length);
@@ -38,6 +47,16 @@ public class FleetManager {
         }
         return null;
     }
+    public boolean haveAllPlayerShipsBeenPlaced()
+    {
+        for (Ship ship : fleet) {
+            if (!ship.getPlaced()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public List<Ship> getShipsByLength(int length)
     {
@@ -48,5 +67,12 @@ public class FleetManager {
         }
 
         return foundShips;
+    }
+
+    public void printFleet()
+    {
+        for (Ship ship : fleet) {
+            System.out.println(ship.getShipId() + " - " + ship.getLength());
+        }
     }
 }
