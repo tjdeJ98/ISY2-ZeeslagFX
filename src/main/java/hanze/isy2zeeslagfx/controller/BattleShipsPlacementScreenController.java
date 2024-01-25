@@ -1,10 +1,8 @@
 package hanze.isy2zeeslagfx.controller;
 
-import hanze.isy2zeeslagfx.config.Config;
-import hanze.isy2zeeslagfx.config.Setting;
 import javafx.fxml.FXML;
 
-public class battleShipsPlacementScreenController {
+public class BattleShipsPlacementScreenController {
     @FXML
     public void initialize()
     {

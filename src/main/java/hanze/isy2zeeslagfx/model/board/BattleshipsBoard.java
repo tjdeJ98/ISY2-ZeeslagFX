@@ -64,6 +64,7 @@ public class BattleshipsBoard implements Board {
         }
         return true;
     }
+
     public boolean checkIfSpotNotTaken(String coordinate)
     {
         for (BattleshipCell[] row : board) {
@@ -74,7 +75,6 @@ public class BattleshipsBoard implements Board {
         }
         return true;
     }
-
 
     private List<String> getAllCoordinatesShipWillCover(String startCoordinate, String endCoordinate)
     {
