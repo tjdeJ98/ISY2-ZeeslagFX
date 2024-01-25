@@ -1,5 +1,7 @@
 package hanze.isy2zeeslagfx.model.game;
 
+import hanze.isy2zeeslagfx.model.ai.AIStrategy;
+import hanze.isy2zeeslagfx.model.player.AIPlayer;
 import hanze.isy2zeeslagfx.model.player.Player;
 import hanze.isy2zeeslagfx.model.player.strategy.BattleshipStrategy;
 
@@ -75,8 +77,12 @@ public class BattleshipGame extends Game {
         if (isOnline) {
             // TODO play a game online
         } else {
-            console = new ConsoleHandler(this);
-            console.update();
+            if (curPlayer.getName().equals("AI")) {
+                ((AIPlayer) curPlayer).getAiStrategy().update();
+            } else {
+                console = new ConsoleHandler(this);
+                console.update();
+            }
         }
     }
 

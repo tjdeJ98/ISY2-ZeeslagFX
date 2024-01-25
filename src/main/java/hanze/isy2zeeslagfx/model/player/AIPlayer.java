@@ -1,5 +1,7 @@
 package hanze.isy2zeeslagfx.model.player;
 
+import hanze.isy2zeeslagfx.model.ai.AIStrategy;
+import hanze.isy2zeeslagfx.model.ai.BattleshipsAIStrategy;
 import hanze.isy2zeeslagfx.model.board.BattleshipsBoard;
 import hanze.isy2zeeslagfx.model.board.Board;
 import hanze.isy2zeeslagfx.model.board.BoardFactory;
@@ -10,6 +12,7 @@ import hanze.isy2zeeslagfx.model.player.strategy.PlayerStrategy;
 public class AIPlayer implements Player {
     private final String name;
     private PlayerStrategy strategy;
+    private AIStrategy aiStrategy;
 
     public AIPlayer(String gameType, String playerName)
     {
@@ -21,6 +24,7 @@ public class AIPlayer implements Player {
     {
         if (gameType.equals("Battleships")) {
             this.strategy = new BattleshipStrategy();
+            this.aiStrategy = new BattleshipsAIStrategy();
         }
     }
 
@@ -33,5 +37,9 @@ public class AIPlayer implements Player {
     public PlayerStrategy getStrategy()
     {
         return this.strategy;
+    }
+
+    public AIStrategy getAiStrategy() {
+        return aiStrategy;
     }
 }

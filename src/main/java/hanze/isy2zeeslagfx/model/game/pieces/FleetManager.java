@@ -77,6 +77,13 @@ public class FleetManager {
         }
     }
 
+    public void printFleetWithPlacement()
+    {
+        for (Ship ship : fleet) {
+            System.out.println("Ship ID: " + ship.getShipId() + " Ship size: " + ship.getLength() + " -> Placed: " + ship.getPlaced());
+        }
+    }
+
     public boolean isFleetSunk()
     {
         for (Ship ship : fleet) {

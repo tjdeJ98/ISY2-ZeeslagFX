@@ -74,8 +74,7 @@ public class ConsoleHandler {
         boardStatusShow();
 
         System.out.println("Ships placing status");
-        for (Ship ship : curPlayerStrategy.getFleetManager().getFleet())
-            System.out.println("Ship ID: " + ship.getShipId() + " Ship size: " + ship.getLength() + " -> Placed: " + ship.getPlaced());
+        curPlayerStrategy.getFleetManager().printFleetWithPlacement();
 
         int shipId = selectShipId();
         Ship ship = curPlayerStrategy.getFleetManager().getShipById(shipId);

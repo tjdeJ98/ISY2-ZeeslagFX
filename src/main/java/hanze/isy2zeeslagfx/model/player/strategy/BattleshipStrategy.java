@@ -33,6 +33,10 @@ public class BattleshipStrategy implements PlayerStrategy {
         }
     }
 
+    public void shot() {
+
+    }
+
     public void changeSetupFase()
     {
         setupFaseDone = true;
