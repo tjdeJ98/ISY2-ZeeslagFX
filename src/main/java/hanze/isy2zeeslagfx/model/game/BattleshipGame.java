@@ -15,10 +15,13 @@ public class BattleshipGame extends Game {
     private final int[] startShipsLengths = {2, 4, 5, 6};
     BattleshipStrategy playerStrategy;
 
+    private boolean setupFaseDone;
+
     public BattleshipGame(String gameType, PlayersSetupType playersType)
     {
         super(gameType, playersType);
         this.gameEnd = false;
+        this.setupFaseDone = false;
         givePlayersShips();
     }
 
@@ -71,12 +74,21 @@ public class BattleshipGame extends Game {
         playerSetupActions();
         System.out.println(this.curPlayer.getName());
 
-        while(!this.playerStrategy.getFleetManager().haveAllPlayerShipsBeenPlaced()) {
-            ConsoleHandler console = new ConsoleHandler(this);
-            console.placeAShip();
+        ConsoleHandler console = new ConsoleHandler(this);
+        // Set up shits for each player
+        if (!setupFaseDone) {
+            while (!this.playerStrategy.getFleetManager().haveAllPlayerShipsBeenPlaced()) {
+                console.placeAShip();
+            }
+        } else {
+            console.makeShot();
         }
 
         // TODO Keep track when all ship set ups done, then skip this step.
+        // TODO shoot a ship
+        // TODO track ships
+        // TODO track shots taken (Hit and mis)
+        // TODO track winner and loser
 
         playerStrategy.getFleetManager().printFleet();
     }

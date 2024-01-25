@@ -77,4 +77,9 @@ public class ConsoleHandler {
 
         game.playerStrategy.placeShip(start, end, shipId);
     }
+
+    public void makeShot()
+    {
+        System.out.println("Make shots not implemented yet");
+    }
 }
