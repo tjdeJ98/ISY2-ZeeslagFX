@@ -14,6 +14,8 @@ public abstract class Game {
     protected GameLoop gameLoop;
     protected Map<Integer, Player> players;
     private final String gameType;
+    private boolean gameEnd;
+    private boolean isOnline;
 
     public enum PlayersSetupType
     {
@@ -28,6 +30,7 @@ public abstract class Game {
         this.players = new HashMap<>();
         this.gameType = gameType;
         this.playersType = playersType;
+        this.gameEnd = false;
         initializePlayers();
     }
 
@@ -61,15 +64,22 @@ public abstract class Game {
         players.put(playerId, player);
     }
 
-    public Player getPlayer(int playerId)
+    public void flipGameEnd()
     {
-        return players.get(playerId);
+        gameEnd = !gameEnd;
+    }
+
+    public boolean getGameEnd()
+    {
+        return gameEnd;
     }
 
     public void setGameLoop(GameLoop gameLoop)
     {
         this.gameLoop = gameLoop;
     }
+
+    public abstract void switchPlayer();
 
     public abstract void update();
     public abstract void checkForEnd();

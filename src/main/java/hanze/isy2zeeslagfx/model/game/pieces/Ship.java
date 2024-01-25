@@ -5,6 +5,7 @@ public class Ship {
     private final int Id;
     private boolean state; // true = placed && not sunk, false = not placed || sunk
     private boolean placed; // true = placed on board, false = not placed on board
+    private int health;
 
     public Ship(int shipId, int length)
     {
@@ -12,6 +13,20 @@ public class Ship {
         this.Id = shipId;
         this.state = false;
         this.placed = false;
+        this.health = length;
+    }
+
+    public void shipHit()
+    {
+        health--;
+        if (health==0) {
+            this.state = false;
+        }
+    }
+
+    public int getHealth()
+    {
+        return this.health;
     }
 
     public int getLength()

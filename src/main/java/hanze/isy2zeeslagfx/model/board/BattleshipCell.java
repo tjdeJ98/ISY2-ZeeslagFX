@@ -5,7 +5,6 @@ import hanze.isy2zeeslagfx.model.game.pieces.Ship;
 public class BattleshipCell {
     private int shipId;
     private final String coordinate;
-
     private boolean hit;
 
     public BattleshipCell(String coordinate)
@@ -32,5 +31,10 @@ public class BattleshipCell {
     public void setHit()
     {
         this.hit = true;
+    }
+
+    public boolean getHit()
+    {
+        return this.hit;
     }
 }

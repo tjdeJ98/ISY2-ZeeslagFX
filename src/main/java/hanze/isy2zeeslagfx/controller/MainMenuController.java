@@ -20,7 +20,7 @@ public class MainMenuController {
     @FXML
     public void playBattleShipsLokaal()
     {
-        Game battleshipGame = new BattleshipGame("Battleships", Game.PlayersSetupType.PLAYER_VS_PLAYER);
+        Game battleshipGame = new BattleshipGame("Battleships", Game.PlayersSetupType.PLAYER_VS_PLAYER, false);
         System.out.println("Game setup and started");
         runGame(battleshipGame);
     }

@@ -1,5 +1,7 @@
 package hanze.isy2zeeslagfx.model.board;
 
+import javafx.scene.control.Cell;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,13 +31,14 @@ public class BattleshipsBoard implements Board {
         }
     }
 
-    public boolean shipPlacement(String startCoordinate, String endCoordinate, int shipId)
+    public boolean shipPlacementPossible(String startCoordinate, String endCoordinate, int shipId)
     {
         List<String> coordinates = getAllCoordinatesShipWillCover(startCoordinate, endCoordinate);
         if (coordinates == null)
             return false;
 
-        if (checkIfSpotsNotTaken(coordinates) && checkIfCoordinateExists(startCoordinate, endCoordinate)) {
+        boolean exists = checkIfCoordinateExists(startCoordinate) && checkIfCoordinateExists(endCoordinate);
+        if (checkIfSpotsNotTaken(coordinates) && exists) {
             placeShip(coordinates, shipId);
         } else {
             return false;
@@ -100,7 +103,8 @@ public class BattleshipsBoard implements Board {
         return coordinates;
     }
 
-    public boolean isDuplicateStartAndEnd(String start, String end) {
+    public boolean isDuplicateStartAndEnd(String start, String end)
+    {
         if (start.equals(end)) {
             System.out.println("Start and end coordinates cannot be the same.");
             return true;
@@ -108,7 +112,8 @@ public class BattleshipsBoard implements Board {
         return false;
     }
 
-    public boolean isValidShipPlacementLength(String start, String end, int shipLength) {
+    public boolean isValidShipPlacementLength(String start, String end, int shipLength)
+    {
         char startRow = start.charAt(0);
         char endRow = end.charAt(0);
         int startCol = Character.getNumericValue(start.charAt(1));
@@ -124,14 +129,37 @@ public class BattleshipsBoard implements Board {
         }
     }
 
-    public boolean isValidShipPlacement(String start, String end, int shipLength) {
+    public boolean isValidShipPlacement(String start, String end, int shipLength)
+    {
         boolean foo = !isDuplicateStartAndEnd(start, end);
         boolean bar = isValidShipPlacementLength(start, end, shipLength);
         return foo && bar;
     }
 
-    private boolean checkIfCoordinateExists(String startCoordinate, String endCoordinate) {
-        return listOfAllCoordinatesOnBoard.contains(startCoordinate) && listOfAllCoordinatesOnBoard.contains(endCoordinate);
+    public boolean checkIfCellAlreadyPicked(String coordinate)
+    {
+        return getBattleshipCellByCoordinate(coordinate).getHit();
+    }
+
+    public boolean checkIfCoordinateExists(String coordinate)
+    {
+        return listOfAllCoordinatesOnBoard.contains(coordinate);
+    }
+
+    public boolean cellContainsShip(String coordinate)
+    {
+        return getBattleshipCellByCoordinate(coordinate).getShipId() != -1;
+    }
+
+    private BattleshipCell getBattleshipCellByCoordinate(String coordinate)
+    {
+        for (BattleshipCell[] row : board) {
+            for (BattleshipCell cell : row) {
+                if (cell.getCoordinate().equals(coordinate))
+                    return cell;
+            }
+        }
+        return null;
     }
 
     public void printBoard()
@@ -146,6 +174,35 @@ public class BattleshipsBoard implements Board {
             }
             System.out.println();
         }
+    }
+
+    public int select(String coordinate)
+    {
+        BattleshipCell cell = getBattleshipCellByCoordinate(coordinate);
+        cell.setHit();
+
+        return cell.getShipId();
+    }
+
+    private String getPrintSymbol(BattleshipCell cell)
+    {
+        if (cell.getHit()) {
+            return cell.getShipId() != -1 ? "[X]" : "[O]";
+        } else {
+            return "[ ]";
+        }
+    }
+
+    public void printOnlyHitsBoard()
+    {
+        StringBuilder builder = new StringBuilder();
+        for (int row=0; row<boardSize; row++) {
+            for (int col=0; col<boardSize; col++) {
+                builder.append(getPrintSymbol(board[row][col]));
+            }
+            builder.append("\n");
+        }
+        System.out.print(builder.toString());
     }
 
     public BattleshipCell[][] getBoard() {

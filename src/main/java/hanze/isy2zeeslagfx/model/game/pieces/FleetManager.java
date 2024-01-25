@@ -76,4 +76,14 @@ public class FleetManager {
             System.out.println(ship.getShipId() + " - " + ship.getLength());
         }
     }
+
+    public boolean isFleetSunk()
+    {
+        for (Ship ship : fleet) {
+            if (ship.getHealth() > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

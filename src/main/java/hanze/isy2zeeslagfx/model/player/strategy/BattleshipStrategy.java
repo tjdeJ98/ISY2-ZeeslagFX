@@ -9,14 +9,14 @@ import hanze.isy2zeeslagfx.model.game.pieces.FleetManager;
 // TODO moet wss veel methodes uit BattleshipGame overnemen als player acties.
 public class BattleshipStrategy implements PlayerStrategy {
     private final Board board;
-    private final Board trackingBoard;
     private final FleetManager fleetManager;
+    private boolean setupFaseDone;
 
     public BattleshipStrategy()
     {
         this.board = BoardFactory.createBoard("Battleships");
-        this.trackingBoard = BoardFactory.createBoard("Battleships");
         this.fleetManager = new FleetManager();
+        this.setupFaseDone = false;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class BattleshipStrategy implements PlayerStrategy {
     }
 
     public void placeShip(String startCoordinate, String endCoordinate, int shipId) {
-        if (((BattleshipsBoard) this.board).shipPlacement(startCoordinate, endCoordinate, shipId)) {
+        if (((BattleshipsBoard) this.board).shipPlacementPossible(startCoordinate, endCoordinate, shipId)) {
             this.fleetManager.getShipById(shipId).setPlaced();
             this.fleetManager.getShipById(shipId).setState();
         } else {
@@ -33,9 +33,14 @@ public class BattleshipStrategy implements PlayerStrategy {
         }
     }
 
-    public Board getTrackingBoard()
+    public void changeSetupFase()
     {
-        return trackingBoard;
+        setupFaseDone = true;
+    }
+
+    public boolean getSetupFaseDone()
+    {
+        return this.setupFaseDone;
     }
 
     public FleetManager getFleetManager()

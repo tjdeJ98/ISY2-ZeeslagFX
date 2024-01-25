@@ -1,27 +1,23 @@
 package hanze.isy2zeeslagfx.model.game;
 
-import hanze.isy2zeeslagfx.model.board.BattleshipsBoard;
-import hanze.isy2zeeslagfx.model.game.pieces.Ship;
 import hanze.isy2zeeslagfx.model.player.Player;
 import hanze.isy2zeeslagfx.model.player.strategy.BattleshipStrategy;
 
 import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
+
 //TODO Veel methodes die vanuit update() worden gecallt moet wss naar BattleshipStrategy worden verplaatst.
 public class BattleshipGame extends Game {
-    private Player curPlayer;
-    private boolean gameEnd;
-    private final int[] startShipsLengths = {2, 4, 5, 6};
+    Player curPlayer;
+    private final int[] startShipsLengths = {2};
+    //, 4, 5, 6
     BattleshipStrategy playerStrategy;
+    private boolean isOnline;
+    private ConsoleHandler console;
 
-    private boolean setupFaseDone;
-
-    public BattleshipGame(String gameType, PlayersSetupType playersType)
+    public BattleshipGame(String gameType, PlayersSetupType playersType, boolean isOnline)
     {
         super(gameType, playersType);
-        this.gameEnd = false;
-        this.setupFaseDone = false;
+        this.isOnline = isOnline;
         givePlayersShips();
     }
 
@@ -44,12 +40,18 @@ public class BattleshipGame extends Game {
         this.playerStrategy = (BattleshipStrategy) curPlayer.getStrategy();
     }
 
-    private void switchPlayer()
+    @Override
+    public void switchPlayer()
+    {
+        this.curPlayer = getOtherPlayer();
+    }
+
+    Player getOtherPlayer()
     {
         if (super.players.get(0) == curPlayer) {
-            this.curPlayer = super.players.get(1);
+            return super.players.get(1);
         } else {
-            this.curPlayer = super.players.get(0);
+            return super.players.get(0);
         }
     }
 
@@ -58,7 +60,7 @@ public class BattleshipGame extends Game {
         return curPlayer != null;
     }
 
-    private void playerSetupActions()
+    void playerSetupActions()
     {
         if (checkIfPlayerIsSet()) {
             switchPlayer();
@@ -70,38 +72,21 @@ public class BattleshipGame extends Game {
 
     @Override
     public void update() {
-        // TODO note that all ships have been place and setup can now be skipped (on server possibly send board and only one player)
-        playerSetupActions();
-        System.out.println(this.curPlayer.getName());
-
-        ConsoleHandler console = new ConsoleHandler(this);
-        // Set up shits for each player
-        if (!setupFaseDone) {
-            while (!this.playerStrategy.getFleetManager().haveAllPlayerShipsBeenPlaced()) {
-                console.placeAShip();
-            }
+        if (isOnline) {
+            // TODO play a game online
         } else {
-            console.makeShot();
+            console = new ConsoleHandler(this);
+            console.update();
         }
-
-        // TODO Keep track when all ship set ups done, then skip this step.
-        // TODO shoot a ship
-        // TODO track ships
-        // TODO track shots taken (Hit and mis)
-        // TODO track winner and loser
-
-        playerStrategy.getFleetManager().printFleet();
     }
 
     @Override
     public void checkForEnd()
     {
-        if (gameEnd)
-            gameLoop.stop();
-    }
-
-    public void flipGameEnd()
-    {
-        gameEnd = !gameEnd;
+        if (isOnline) {
+            // TODO play a game online
+        } else {
+            console.checkForEnd();
+        }
     }
 }

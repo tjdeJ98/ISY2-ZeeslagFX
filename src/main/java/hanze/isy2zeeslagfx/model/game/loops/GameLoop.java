@@ -20,6 +20,9 @@ public class GameLoop implements Runnable {
         while (status) {
             game.update();
             game.checkForEnd();
+            if (game.getGameEnd())
+                stop();
+            game.switchPlayer();
         }
     }
 
