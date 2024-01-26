@@ -1,5 +1,6 @@
 package hanze.isy2zeeslagfx;
 
+import hanze.isy2zeeslagfx.network.ResponseListener;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,9 @@ import java.util.Objects;
 public class Main extends Application {
     public static Scene scene;
     public static Stage stage;
+
+
+    ResponseListener.
 
     @Override
     public void start(Stage stageStart) throws IOException {
