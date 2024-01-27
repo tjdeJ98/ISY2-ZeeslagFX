@@ -1,5 +1,8 @@
 package hanze.isy2zeeslagfx;
 
+import hanze.isy2zeeslagfx.network.Command;
+import hanze.isy2zeeslagfx.network.CommandQuit;
+import hanze.isy2zeeslagfx.network.Receiver;
 import hanze.isy2zeeslagfx.network.ResponseListener;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +13,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import hanze.isy2zeeslagfx.network.ResponseListener.*;
 
 public class Main extends Application {
     public static Scene scene;
     public static Stage stage;
 
-
-    ResponseListener.
 
     @Override
     public void start(Stage stageStart) throws IOException {
@@ -30,7 +32,13 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+//        Test data om te kijken of de command pattern werkt.
+//        Receiver receiver = new Receiver();
+//        Command commandQuit = new CommandQuit(receiver);
+//        commandQuit.execute();
+
+
+        //launch();
     }
 
     public static void setScene(String fxmlName)
