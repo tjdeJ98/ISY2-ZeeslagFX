@@ -3,6 +3,7 @@ package hanze.isy2zeeslagfx.network;
 import static java.lang.System.out;
 
 public class CommandPlaceShip implements Command {
+
     Receiver receiver;
 
     @Override

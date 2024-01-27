@@ -3,6 +3,7 @@ package hanze.isy2zeeslagfx.network;
 import static java.lang.System.out;
 
 public class CommandRequestPlayerList implements Command{
+
     Receiver receiver;
 
     public CommandRequestPlayerList(Receiver receiver)
