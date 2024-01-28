@@ -36,20 +36,20 @@ public class ServerConnection {
     /**
      * Deze methode verbreekt de verbinding met de server en logt onze user uit
      */
-    public void shutdown()
-    {
-        done = true;
-        try {
-            quit(); // we loggen eerst netjes uit, zodat we daarna met dezelfde naam weer in kunnen loggen
-            in.close();
-            out.close();
-            if(!client.isClosed()) {
-                client.close();
-            }
-        } catch (IOException e) {
-            //we negeren een exception omdat we toch de verbinding verbreken
-        }
-    }
+//    public void shutdown()
+//    {
+//        done = true;
+//        try {
+//            quit(); // we loggen eerst netjes uit, zodat we daarna met dezelfde naam weer in kunnen loggen
+//            in.close();
+//            out.close();
+//            if(!client.isClosed()) {
+//                client.close();
+//            }
+//        } catch (IOException e) {
+//            //we negeren een exception omdat we toch de verbinding verbreken
+//        }
+//    }
 
     // dit lijkt mij onnodige code, maar verwijder dit pas zodra ik het toestemming heb.
 
