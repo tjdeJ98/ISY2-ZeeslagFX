@@ -1,9 +1,6 @@
 package hanze.isy2zeeslagfx;
 
-import hanze.isy2zeeslagfx.network.Command;
-import hanze.isy2zeeslagfx.network.CommandQuit;
-import hanze.isy2zeeslagfx.network.Receiver;
-import hanze.isy2zeeslagfx.network.ResponseListener;
+import hanze.isy2zeeslagfx.network.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,10 +29,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-//        Test data om te kijken of de command pattern werkt.
+//        launch();
 //        Receiver receiver = new Receiver();
-//        Command commandQuit = new CommandQuit(receiver);
-//        commandQuit.execute();
+//        CommandShutdown commandShutdown = new CommandShutdown(receiver);
+//        commandShutdown.execute();
 
 
 

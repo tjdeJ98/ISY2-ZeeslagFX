@@ -1,11 +1,30 @@
 package hanze.isy2zeeslagfx.network;
 
 import java.io.IOException;
+import java.net.Socket;
 
+import static java.lang.System.in;
 import static java.lang.System.out;
 
 
 public class Receiver {
+
+    private Socket client;
+
+    public void shutdown()
+    {
+        boolean done = true;
+        try {
+            quit(); // we loggen eerst netjes uit, zodat we daarna met dezelfde naam weer in kunnen loggen
+            in.close();
+            out.close();
+            if(!client.isClosed()) {
+                client.close();
+            }
+        } catch (IOException e) {
+            //we negeren een exception omdat we toch de verbinding verbreken
+        }
+    }
 
     public void login(String name)
     {
